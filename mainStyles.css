@@ -28,5 +28,20 @@
 
 .dataTable {
   width: 90%;
-  margin: 20px auto;
+  margin: 50px auto;
+  display: flex;
+  justify-content: center;
+}
+
+.dataTable table,
+.dataTable tr,
+.dataTable th,
+.dataTable td {
+  border: 1px solid rgb(223, 223, 223);
+  border-collapse: collapse;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 20px;
 }

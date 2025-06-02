@@ -6,7 +6,7 @@ smallData.addEventListener("click", () => {
 
   const table = document.createElement("table");
   table.innerHTML += `<tr><th>Hello!</th></tr>
-  <tr><td>Hello!</td></tr>`;
+  <tr><td>Hello!</td>`;
 
   containerForTableData.appendChild(table);
 });
