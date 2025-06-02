@@ -1,0 +1,32 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.visualGraphicsButtons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.visualGraphicsButtons button {
+  border: 1px solid rgb(232, 232, 232);
+  background-color: rgb(243, 243, 243);
+  cursor: pointer;
+  width: 250px;
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.visualGraphicsButtons button:hover {
+  border: 1px solid rgb(0, 255, 255);
+  background-color: rgb(129, 220, 220);
+  color: rgb(255, 255, 255);
+  box-shadow: 1px 1px 10px rgb(180, 180, 180);
+}
+
+.dataTable {
+  width: 90%;
+  margin: 20px auto;
+}
