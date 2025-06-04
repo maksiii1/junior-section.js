@@ -70,3 +70,15 @@ bigData.addEventListener("click", () => {
 
   containerForTableData.appendChild(table);
 });
+
+table.addEventListener("click", (event) => {
+  const target = event.target;
+
+  if (target.tagName === "SPAN") {
+    if (target.textContent === "▼") {
+      target.textContent = "▲";
+    } else {
+      target.textContent = "▼";
+    }
+  }
+});
