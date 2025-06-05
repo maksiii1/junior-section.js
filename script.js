@@ -121,14 +121,14 @@ table.addEventListener("click", (event) => {
         }
       });
 
-      const userIdSorted = userId.sort((a, b) => {
+      const userIdSorted = [...userId].sort((a, b) => {
         return b - a;
       });
-      const idSorted = id.sort((a, b) => {
+      const idSorted = [...id].sort((a, b) => {
         return b - a;
       });
-      const titlesSorted = titles.sort();
-      const completedSorted = completed.sort((a, b) => b - a);
+      const titlesSorted = [...titles].sort();
+      const completedSorted = [...completed].sort((a, b) => b - a);
 
       swapNames.forEach((value, ind) => {
         for (let i = 0; i < value.childNodes.length; i++) {
