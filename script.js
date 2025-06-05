@@ -77,7 +77,10 @@ table.addEventListener("click", (event) => {
   const tableArrHeaders = target.parentNode.parentNode;
   const headers = tableArrHeaders.querySelectorAll("th");
   const swapNames = Array.from(target.closest("table").querySelectorAll("tr"));
-  const headerNames = [];
+  const userId = [];
+  const id = [];
+  const titles = [];
+  const completed = [];
   let index;
 
   if (target.tagName === "SPAN") {
@@ -93,19 +96,93 @@ table.addEventListener("click", (event) => {
       swapNames.forEach((value) => {
         for (let i = 0; i < value.childNodes.length; i++) {
           if (value.childNodes[i].tagName !== "TH") {
-            if (i === index) {
-              headerNames.push(value.childNodes[i].textContent);
+            switch (i) {
+              case 0: {
+                userId.push(value.childNodes[i].textContent);
+                break;
+              }
+              case 1: {
+                id.push(value.childNodes[i].textContent);
+                break;
+              }
+              case 2: {
+                titles.push(value.childNodes[i].textContent);
+                break;
+              }
+              case 3: {
+                completed.push(value.childNodes[i].textContent);
+                break;
+              }
+              default: {
+                break;
+              }
             }
           }
         }
       });
 
+      const userIdSorted = userId.sort((a, b) => {
+        return a - b;
+      });
+      const idSorted = id.sort((a, b) => {
+        return a - b;
+      });
+      const titlesSorted = titles.sort();
+      const completedSorted = completed.sort((a, b) => a - b);
+
       swapNames.forEach((value, ind) => {
         for (let i = 0; i < value.childNodes.length; i++) {
           if (value.childNodes[i].tagName !== "TH") {
             if (i === index) {
-              value.childNodes[i].textContent =
-                headerNames[headerNames.length - ind];
+              switch (i) {
+                case 0: {
+                  value.childNodes[i].textContent = userIdSorted[ind];
+
+                  userId.forEach((isValue, index) => {
+                    if (value.childNodes[i].textContent === isValue) {
+                      value.childNodes[i + 1].textContent = id[index];
+                      value.childNodes[i + 2].textContent = titles[index];
+                      value.childNodes[i + 3].textContent = completed[index];
+                    }
+                  });
+                  break;
+                }
+                case 1: {
+                  value.childNodes[i].textContent = id[id.length - ind];
+                  value.childNodes[i - 1].textContent =
+                    userId[userId.length - ind];
+                  value.childNodes[i + 1].textContent =
+                    titles[titles.length - ind];
+                  value.childNodes[i + 2].textContent =
+                    completed[completed.length - ind];
+
+                  break;
+                }
+                case 2: {
+                  value.childNodes[i].textContent = titles[titles.length - ind];
+                  value.childNodes[i - 1].textContent = id[id.length - ind];
+                  value.childNodes[i - 2].textContent =
+                    userId[userId.length - ind];
+                  value.childNodes[i + 1].textContent =
+                    completed[completed.length - ind];
+
+                  break;
+                }
+                case 3: {
+                  value.childNodes[i].textContent =
+                    completed[completed.length - ind];
+                  value.childNodes[i - 1].textContent =
+                    titles[titles.length - ind];
+                  value.childNodes[i - 2].textContent = id[id.length - ind];
+                  value.childNodes[i - 3].textContent =
+                    userId[userId.length - ind];
+
+                  break;
+                }
+                default: {
+                  break;
+                }
+              }
             }
           }
         }
@@ -123,7 +200,7 @@ table.addEventListener("click", (event) => {
         for (let i = 0; i < value.childNodes.length; i++) {
           if (value.childNodes[i].tagName !== "TH") {
             if (i === index) {
-              headerNames.push(value.childNodes[i].textContent);
+              // headerNames.push(value.childNodes[i].textContent);
             }
           }
         }
@@ -133,8 +210,8 @@ table.addEventListener("click", (event) => {
         for (let i = 0; i < value.childNodes.length; i++) {
           if (value.childNodes[i].tagName !== "TH") {
             if (i === index) {
-              value.childNodes[i].textContent =
-                headerNames[headerNames.length - ind];
+              // value.childNodes[i].textContent =
+              // headerNames[headerNames.length - ind];
             }
           }
         }
