@@ -122,13 +122,13 @@ table.addEventListener("click", (event) => {
       });
 
       const userIdSorted = userId.sort((a, b) => {
-        return a - b;
+        return b - a;
       });
       const idSorted = id.sort((a, b) => {
-        return a - b;
+        return b - a;
       });
       const titlesSorted = titles.sort();
-      const completedSorted = completed.sort((a, b) => a - b);
+      const completedSorted = completed.sort((a, b) => b - a);
 
       swapNames.forEach((value, ind) => {
         for (let i = 0; i < value.childNodes.length; i++) {
@@ -148,34 +148,41 @@ table.addEventListener("click", (event) => {
                   break;
                 }
                 case 1: {
-                  value.childNodes[i].textContent = id[id.length - ind];
-                  value.childNodes[i - 1].textContent =
-                    userId[userId.length - ind];
-                  value.childNodes[i + 1].textContent =
-                    titles[titles.length - ind];
-                  value.childNodes[i + 2].textContent =
-                    completed[completed.length - ind];
+                  value.childNodes[i].textContent = idSorted[ind];
+
+                  id.forEach((isValue, index) => {
+                    if (value.childNodes[i].textContent === isValue) {
+                      value.childNodes[i - 1].textContent = userId[index];
+                      value.childNodes[i + 1].textContent = titles[index];
+                      value.childNodes[i + 2].textContent = completed[index];
+                    }
+                  });
 
                   break;
                 }
                 case 2: {
-                  value.childNodes[i].textContent = titles[titles.length - ind];
-                  value.childNodes[i - 1].textContent = id[id.length - ind];
-                  value.childNodes[i - 2].textContent =
-                    userId[userId.length - ind];
-                  value.childNodes[i + 1].textContent =
-                    completed[completed.length - ind];
+                  value.childNodes[i].textContent = titlesSorted[ind];
+
+                  titles.forEach((isValue, index) => {
+                    if (value.childNodes[i].textContent === isValue) {
+                      value.childNodes[i - 2].textContent = userId[index];
+                      value.childNodes[i - 1].textContent = id[index];
+                      value.childNodes[i + 1].textContent = completed[index];
+                    }
+                  });
 
                   break;
                 }
                 case 3: {
-                  value.childNodes[i].textContent =
-                    completed[completed.length - ind];
-                  value.childNodes[i - 1].textContent =
-                    titles[titles.length - ind];
-                  value.childNodes[i - 2].textContent = id[id.length - ind];
-                  value.childNodes[i - 3].textContent =
-                    userId[userId.length - ind];
+                  value.childNodes[i].textContent = completedSorted[ind];
+
+                  completed.forEach((isValue, index) => {
+                    if (value.childNodes[i].textContent === isValue) {
+                      value.childNodes[i - 3].textContent = userId[index];
+                      value.childNodes[i - 2].textContent = id[index];
+                      value.childNodes[i - 1].textContent = titles[index];
+                    }
+                  });
 
                   break;
                 }
