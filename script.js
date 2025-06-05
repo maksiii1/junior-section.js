@@ -73,12 +73,72 @@ bigData.addEventListener("click", () => {
 
 table.addEventListener("click", (event) => {
   const target = event.target;
+  const tableRowName = target.parentNode;
+  const tableArrHeaders = target.parentNode.parentNode;
+  const headers = tableArrHeaders.querySelectorAll("th");
+  const swapNames = Array.from(target.closest("table").querySelectorAll("tr"));
+  const headerNames = [];
+  let index;
 
   if (target.tagName === "SPAN") {
     if (target.textContent === "▼") {
       target.textContent = "▲";
+
+      for (let i = 0; i < headers.length; i++) {
+        if (headers[i].textContent === tableRowName.textContent) {
+          index = i;
+        }
+      }
+
+      swapNames.forEach((value) => {
+        for (let i = 0; i < value.childNodes.length; i++) {
+          if (value.childNodes[i].tagName !== "TH") {
+            if (i === index) {
+              headerNames.push(value.childNodes[i].textContent);
+            }
+          }
+        }
+      });
+
+      swapNames.forEach((value, ind) => {
+        for (let i = 0; i < value.childNodes.length; i++) {
+          if (value.childNodes[i].tagName !== "TH") {
+            if (i === index) {
+              value.childNodes[i].textContent =
+                headerNames[headerNames.length - ind];
+            }
+          }
+        }
+      });
     } else {
       target.textContent = "▼";
+
+      for (let i = 0; i < headers.length; i++) {
+        if (headers[i].textContent === tableRowName.textContent) {
+          index = i;
+        }
+      }
+
+      swapNames.forEach((value) => {
+        for (let i = 0; i < value.childNodes.length; i++) {
+          if (value.childNodes[i].tagName !== "TH") {
+            if (i === index) {
+              headerNames.push(value.childNodes[i].textContent);
+            }
+          }
+        }
+      });
+
+      swapNames.forEach((value, ind) => {
+        for (let i = 0; i < value.childNodes.length; i++) {
+          if (value.childNodes[i].tagName !== "TH") {
+            if (i === index) {
+              value.childNodes[i].textContent =
+                headerNames[headerNames.length - ind];
+            }
+          }
+        }
+      });
     }
   }
 });
