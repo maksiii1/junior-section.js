@@ -27,6 +27,8 @@ smallData.addEventListener("click", () => {
         dataRow += `<td>${json[value]}</td>`;
       }
       dataRow += "</tr>";
+
+      copyDatas = headRow + dataRow;
       table.innerHTML += dataRow;
     })
     .catch((error) => console.log(error));

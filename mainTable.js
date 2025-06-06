@@ -10,7 +10,7 @@ table.addEventListener("click", (event) => {
 
   const headers = tableArrHeaders.querySelectorAll("th");
 
-  const swapNames = Array.from(
+  const swapInfo = Array.from(
     target.closest("table").querySelectorAll("tr")
   ).slice(1);
 
@@ -36,7 +36,7 @@ table.addEventListener("click", (event) => {
         }
       }
 
-      swapNames.forEach((value) => {
+      swapInfo.forEach((value) => {
         for (let i = 0; i < value.childNodes.length; i++) {
           switch (i) {
             case 0: {
@@ -77,7 +77,7 @@ table.addEventListener("click", (event) => {
           .sort((a, b) => b - a),
       };
 
-      swapNames.forEach((value, ind) => {
+      swapInfo.forEach((value, ind) => {
         for (let i = 0; i < value.childNodes.length; i++) {
           if (i === index) {
             switch (i) {
