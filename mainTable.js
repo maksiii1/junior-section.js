@@ -62,7 +62,7 @@ table.addEventListener("click", (event) => {
         }
       });
 
-      let userLenght = datasJSON.userId.length;
+      let userLength = datasJSON.userId.length;
 
       const dataJSONSorted = {
         userIdSorted: [...datasJSON.userId].sort((a, b) => {
@@ -91,11 +91,11 @@ table.addEventListener("click", (event) => {
                 datasJSON.userId.forEach((isValue) => {
                   if (value.childNodes[i].textContent === isValue && checker) {
                     value.childNodes[i + 1].textContent =
-                      datasJSON.id[--userLenght];
+                      datasJSON.id[--userLength];
                     value.childNodes[i + 2].textContent =
-                      datasJSON.titles[userLenght];
+                      datasJSON.titles[userLength];
                     value.childNodes[i + 3].textContent =
-                      datasJSON.completed[userLenght];
+                      datasJSON.completed[userLength];
                     checker = false;
                   }
                 });
@@ -128,22 +128,6 @@ table.addEventListener("click", (event) => {
                     value.childNodes[i - 1].textContent = datasJSON.id[index];
                     value.childNodes[i + 1].textContent =
                       datasJSON.completed[index];
-                  }
-                });
-
-                break;
-              }
-              case 3: {
-                value.childNodes[i].textContent =
-                  dataJSONSorted.completedSorted[ind];
-
-                datasJSON.completed.forEach((isValue, index) => {
-                  if (value.childNodes[i].textContent === isValue) {
-                    value.childNodes[i - 3].textContent =
-                      datasJSON.userId[index];
-                    value.childNodes[i - 2].textContent = datasJSON.id[index];
-                    value.childNodes[i - 1].textContent =
-                      datasJSON.titles[index];
                   }
                 });
 

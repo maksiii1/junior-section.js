@@ -17,7 +17,11 @@ smallData.addEventListener("click", () => {
 
       let headRow = "<tr>";
       for (let property in json) {
-        headRow += `<th>${property}<span>▲</span></th>`;
+        if (property === "completed") {
+          headRow += `<th>${property}</th>`;
+        } else {
+          headRow += `<th>${property}<span>▲</span></th>`;
+        }
       }
       headRow += "</tr>";
       table.innerHTML += headRow;
@@ -51,7 +55,11 @@ bigData.addEventListener("click", () => {
       let headRow = "<tr>";
       for (let obj of json) {
         for (let property in obj) {
-          headRow += `<th>${property}<span>▲</span></th>`;
+          if (property === "completed") {
+            headRow += `<th>${property}</th>`;
+          } else {
+            headRow += `<th>${property}<span>▲</span></th>`;
+          }
         }
         break;
       }
