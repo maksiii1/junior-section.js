@@ -90,37 +90,14 @@ table.addEventListener("click", (event) => {
     titles: [],
     completed: [],
   };
+
+  const copyDatas = {};
+
   let index;
 
   if (target.tagName === "SPAN") {
     if (target.textContent === "▼") {
       target.textContent = "▲";
-      for (let i = 0; i < headers.length; i++) {
-        if (headers[i].textContent === tableRowName.textContent) {
-          index = i;
-        }
-      }
-
-      swapNames.forEach((value) => {
-        for (let i = 0; i < value.childNodes.length; i++) {
-          if (value.childNodes[i].tagName !== "TH") {
-            if (i === index) {
-              // headerNames.push(value.childNodes[i].textContent);
-            }
-          }
-        }
-      });
-
-      swapNames.forEach((value, ind) => {
-        for (let i = 0; i < value.childNodes.length; i++) {
-          if (value.childNodes[i].tagName !== "TH") {
-            if (i === index) {
-              // value.childNodes[i].textContent =
-              // headerNames[headerNames.length - ind];
-            }
-          }
-        }
-      });
     } else {
       target.textContent = "▼";
 
@@ -156,6 +133,11 @@ table.addEventListener("click", (event) => {
         }
       });
 
+      copyDatas.userId = datasJSON.userId;
+      copyDatas.id = datasJSON.id;
+      copyDatas.titles = datasJSON.titles;
+      copyDatas.completed = datasJSON.completed;
+
       const dataJSONSorted = {
         userIdSorted: [...datasJSON.userId].sort((a, b) => {
           return b - a;
@@ -164,7 +146,11 @@ table.addEventListener("click", (event) => {
           return b - a;
         }),
         titlesSorted: [...datasJSON.titles].sort(),
-        completedSorted: [...datasJSON.completed].sort((a, b) => b - a),
+        completedSorted: [...datasJSON.completed]
+          .map((value) => {
+            return value === "true";
+          })
+          .sort((a, b) => b - a),
       };
 
       swapNames.forEach((value, ind) => {
