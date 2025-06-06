@@ -1,6 +1,7 @@
 const smallData = document.getElementById("btn1");
 const bigData = document.getElementById("btn2");
 const table = document.createElement("table");
+let copyDatas;
 
 smallData.addEventListener("click", () => {
   const containerForTableData = document.getElementsByClassName("dataTable")[0];
@@ -64,6 +65,7 @@ bigData.addEventListener("click", () => {
         dataRow += "</tr>";
       }
 
+      copyDatas = headRow + dataRow;
       table.innerHTML += dataRow;
     })
     .catch((error) => console.log(error));
@@ -91,13 +93,12 @@ table.addEventListener("click", (event) => {
     completed: [],
   };
 
-  const copyDatas = {};
-
   let index;
 
   if (target.tagName === "SPAN") {
     if (target.textContent === "▼") {
       target.textContent = "▲";
+      table.innerHTML = copyDatas;
     } else {
       target.textContent = "▼";
 
@@ -132,11 +133,6 @@ table.addEventListener("click", (event) => {
           }
         }
       });
-
-      copyDatas.userId = datasJSON.userId;
-      copyDatas.id = datasJSON.id;
-      copyDatas.titles = datasJSON.titles;
-      copyDatas.completed = datasJSON.completed;
 
       const dataJSONSorted = {
         userIdSorted: [...datasJSON.userId].sort((a, b) => {
