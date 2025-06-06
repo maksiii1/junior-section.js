@@ -73,8 +73,5 @@ bigData.addEventListener("click", () => {
   containerForTableData.appendChild(table);
 });
 
-// table.addEventListener("click", (event) => {
-//   const target = event.target;
-// });
-
-export { table, copyDatas };
+export { table };
+export { copyDatas };

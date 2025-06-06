@@ -52,3 +52,7 @@
   cursor: pointer;
   user-select: none;
 }
+
+.focusStyle {
+  background-color: rgb(15, 237, 237);
+}
